@@ -1,8 +1,4 @@
-const fs = require("fs");
-const dirPath = "./country";
-const rename = require("fs").rename;
-
-const countryCode = {
+module.exports = {
   ac: "Ascension Island",
   ad: "Andorra",
   ae: "United Arab Emirates",
@@ -252,29 +248,3 @@ const countryCode = {
   zm: "Zambia",
   zw: "Zimbabwe",
 };
-
-const countryArray = {};
-for (const [code, country] of Object.entries(countryCode)) {
-  // console.log(`${code}.png`.toLowerCase());
-  countryArray[`${code}.png`.toLowerCase()] = `${country}.png`;
-}
-
-fs.readdir(dirPath, (err, files) => {
-  console.log(files.length);
-});
-
-async function ls(path) {
-  const dir = await fs.promises.opendir(path);
-  for await (const dirent of dir) {
-    if (countryArray[dirent.name]) {
-      rename(`${dirPath}/${dirent.name}`, `${dirPath}/${countryArray[dirent.name]}`, (err) => {
-        if (err) console.log(err);
-        console.log("Rename complete!");
-      });
-    }
-  }
-}
-
-ls(dirPath).catch(console.error);
-
-return "success";
