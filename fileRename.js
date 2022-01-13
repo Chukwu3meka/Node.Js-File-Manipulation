@@ -15,10 +15,11 @@ We'll loop through that countryCode and rename our country flag
 
 module.exports = () => {
   const countryArray = {};
+  // if file names are in code, uncomment 1. else 2.
   for (const [code, country] of Object.entries(countryCode)) {
-    // **** code to full name
+    // 1. **** code to full name
     countryArray[`${code}.png`.toLowerCase()] = `${country}.png`;
-    // **** full name to code
+    // 2. **** full name to code
     // countryArray[`${country}.png`] = `${code}.png`.toLowerCase();
   }
 
